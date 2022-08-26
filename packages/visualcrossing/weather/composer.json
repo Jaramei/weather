@@ -1,0 +1,17 @@
+{
+    "name": "visualcrossing/weather",
+    "description": "Wrapper API VisualCrossing Weather",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakub Jablonski",
+            "email": "jakubjablonski@pasadema.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2|^7.3|^7.4|^8.0"
+    }
+
+}
