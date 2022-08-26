@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WeatherController;
-use \App\Http\Controllers\WeatherVisualController;
+use App\Http\Controllers\{WeatherController, WeatherVisualController};
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +21,9 @@ Route::get('/', function () {
 Route::prefix('/weather')->group(function () {
 
     /** 1. Service: Simple Example */
-    Route::get('/{city}',[WeatherController::class, 'index'])->where('city', '/\p{L}+/u');
+    Route::get('/{city}',[WeatherController::class, 'index'])->where('city', '[A-Za-z]+');
     /** 2. Package: Visual only Output array dd() + string */
-    Route::get('/visual/{city}',[WeatherVisualController::class, 'currentTemperature'])->where('city', '/\p{L}+/u');
+    Route::get('/visual/{city}',[WeatherVisualController::class, 'currentTemperature'])->where('city', '[A-Za-z]+');
 
 });
 

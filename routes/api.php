@@ -18,20 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::prefix('/v1')->group(function () {
 
-    Route::prefix('/wheater')->group(function () {
+    Route::prefix('/weather')->group(function () {
 
-        Route::get('/', [WeatherEndPoint::class, 'getAll']);
-        Route::get('/{city}',[WeatherEndPoint::class, 'getCity']);
+        Route::get('/', [WeatherEndPoint::class,'getAll']);
+        Route::get('search/{city}',[WeatherEndPoint::class,'getCity'])->where('city', '[A-Za-z]+');;
 
-    });
-
-    Route::get('/', function () {
-        return response()->json([
-            'message' => 'Please login to the API with username and password. Unauthenticated'
-        ]);
     });
 
 });
