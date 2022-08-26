@@ -24,6 +24,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/wheater')->group(function () {
 
         Route::get('/', [WeatherEndPoint::class, 'getAll']);
+        Route::get('/{city}',[WeatherEndPoint::class, 'getCity']);
 
     });
 
