@@ -9,9 +9,17 @@ class WeatherVisualController
 {
     protected Client $client;
 
-    public function __construct(Client $client)
+
+    /**
+     * @var
+     */
+    private array $temperature;
+
+    public function __construct(Client $client, $temperature)
     {
         $this->client = $client;
+        $this->temperature = $temperature;
+
     }
 
     public function currentTemperature(Request $request)
@@ -20,11 +28,11 @@ class WeatherVisualController
         $response = $this->client->make()->to($request->city);
 
         /* Add Query to response or ['include'=>'days'] and more options */
-        $temperature = $response->addQuery(['include'=>'current'])->get();
+        $this->temperature = $response->addQuery(['include'=>'current'])->get();
 
-        echo $temperature['currentConditions']['temp'];
+        echo $this->temperature['currentConditions']['temp'];
 
-        dd($temperature);
+        dd($this->temperature);
 
     }
 
