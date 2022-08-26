@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Visualcrossing\Weather\Client;
 
-class WeatherVisualController
+class WeatherVisualController extends Controller
 {
-    protected Client $client;
-
 
     /**
      * @var
      */
-    private array $temperature;
+    protected Client $client;
 
-    public function __construct(Client $client, $temperature)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->temperature = $temperature;
 
     }
 
@@ -28,11 +25,11 @@ class WeatherVisualController
         $response = $this->client->make()->to($request->city);
 
         /* Add Query to response or ['include'=>'days'] and more options */
-        $this->temperature = $response->addQuery(['include'=>'current'])->get();
+        $temperature = $response->addQuery(['include'=>'current'])->get();
 
-        echo $this->temperature['currentConditions']['temp'];
+        echo $temperature['currentConditions']['temp'];
 
-        dd($this->temperature);
+        dd($temperature);
 
     }
 
